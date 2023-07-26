@@ -42,9 +42,9 @@
                   </thead>
                   @if ($avocats)
                   <tbody>
-                    @foreach ($avocats as $avocat )
+                    @foreach ($avocats as $index=>$avocat )
                     <tr>
-                        <th scope="row"><a href="#">1</a></th>
+                        <th scope="row"><a >{{$index+1}}</a></th>
                         <td>
                           <div class="d-flex px-2 mb-2">
                             <div class="avatar">
@@ -99,12 +99,15 @@
                       <th scope="col">
                         Nom
                       </th>
+                      <th scope="col">
+
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach ($fonctions as $fonction )
+                    @foreach ($fonctions as $index => $fonction )
                         <tr>
-                            <th scope="row"><a href="#">{{$fonction->id}}</a></th>
+                            <th scope="row"><a href="#">{{$index+1}}</a></th>
 
                             <td><p class="text-dark">
                                  <span>{{$fonction->nom_fr}}</span>
@@ -112,8 +115,35 @@
                                 </p>
                             </td>
                             <td>
-                                <span  ><i class="text-warning bi bi-pencil-square"></i></span>
-                               <span  > <i class="text-danger bi bi-trash3-fill"></i></span>
+                                <div class="d-flex">
+                                    <a href="{{route('avocat.edit-fonction',$fonction->id)}}" class="mx-2"  ><i class="text-warning bi bi-pencil-square"></i></a>
+
+                                    {{-- <span  data-bs-toggle="modal" data-bs-target="#basicModal">
+                                        <i class="btn text-danger bi bi-trash3-fill"></i></span> --}}
+                                </div>
+                                <div class="modal fade" id="basicModal" tabindex="-1">
+                                    <div class="modal-dialog">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title">Suppression de la fonction</h5>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="text-center">Voulez-vous supprimer Cette fonction?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
+                                          <form action="{{route('avocat.delete_fonction',$fonction->id)}}" method="post">
+                                            @csrf
+                                            @method('POST')
+                                            <input type="submit" value="Oui"  class="btn btn-primary">
+                                          </form>
+
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
                            </td>
                         </tr>
                     @endforeach
@@ -135,4 +165,7 @@
     </div>
   </section>
 
+
+  </div>
 @endsection
+

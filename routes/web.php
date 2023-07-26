@@ -1,7 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+/*
+db: u911414181_pla2
+user:u911414181_pla2
+password:Pla2023@
+*/
 
 Route::post('/ajouterpersonnel', ["PersonnelController","create"]) ->name("personnels.create");
 
