@@ -1,25 +1,46 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+
 /*
-db: u911414181_pla2
-user:u911414181_pla2
-password:Pla2023@
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
 */
 
-Route::post('/ajouterpersonnel', ["PersonnelController","create"]) ->name("personnels.create");
+Route::get('/', [\App\Http\Controllers\AvocatController::class,'avocats'])->middleware(['auth', 'verified'])->name("avocat");
 
-Route::get('/newsletter', [\App\Http\Controllers\BuaniaController::class,'newsletter'])->name("newsletter");
+Route::get('/avocat', function () {
+    return view('avocat');
+})->middleware(['auth', 'verified'])->name('avocat');
 
-Route::get('/', [\App\Http\Controllers\AvocatController::class,'avocats'])->name("avocat");
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
-Route::get('/detail/{id}', [\App\Http\Controllers\AvocatController::class,'show'])->name("avocat.detail");
+require __DIR__.'/auth.php';
 
-Route::get('/add', [\App\Http\Controllers\AvocatController::class,'add'])->name("avocat.add");
+Route::post('/ajouterpersonnel', ["PersonnelController","create"])->middleware(['auth', 'verified']) ->name("personnels.create");
 
-Route::get('/add-fonction', [\App\Http\Controllers\AvocatController::class,'add_fonction'])->name("avocat.add-fonction");
+Route::get('/newsletter', [\App\Http\Controllers\BuaniaController::class,'newsletter'])->middleware(['auth', 'verified'])->name("newsletter");
 
-Route::get('/edit-fonction/{id}', [\App\Http\Controllers\AvocatController::class,'edit_fonction'])->name("avocat.edit-fonction");
+Route::get('/', [\App\Http\Controllers\AvocatController::class,'avocats'])->middleware(['auth', 'verified'])->name("avocat");
+
+Route::get('/detail/{id}', [\App\Http\Controllers\AvocatController::class,'show'])->middleware(['auth', 'verified'])->name("avocat.detail");
+
+Route::get('/add', [\App\Http\Controllers\AvocatController::class,'add'])->middleware(['auth', 'verified'])->name("avocat.add");
+
+Route::get('/add-fonction', [\App\Http\Controllers\AvocatController::class,'add_fonction'])->middleware(['auth', 'verified'])->name("avocat.add-fonction");
+
+Route::get('/edit-fonction/{id}', [\App\Http\Controllers\AvocatController::class,'edit_fonction'])->middleware(['auth', 'verified'])->name("avocat.edit-fonction");
 
 
 /**
@@ -27,33 +48,33 @@ Route::get('/edit-fonction/{id}', [\App\Http\Controllers\AvocatController::class
  */
 
 
-Route::post('/save-avocat', [\App\Http\Controllers\AvocatController::class,'save'])->name("avocat.save");
-Route::post('/save-fonct', [\App\Http\Controllers\AvocatController::class,'save_fonction'])->name("avocat.save_fonct");
-Route::post('/update-fonct/{id}', [\App\Http\Controllers\AvocatController::class,'update_fonction'])->name("avocat.update_fonction");
-Route::post('/delete-fonct/{id}', [\App\Http\Controllers\AvocatController::class,'delete_fonction'])->name("avocat.delete_fonction");
+Route::post('/save-avocat', [\App\Http\Controllers\AvocatController::class,'save'])->middleware(['auth', 'verified'])->name("avocat.save");
+Route::post('/save-fonct', [\App\Http\Controllers\AvocatController::class,'save_fonction'])->middleware(['auth', 'verified'])->name("avocat.save_fonct");
+Route::post('/update-fonct/{id}', [\App\Http\Controllers\AvocatController::class,'update_fonction'])->middleware(['auth', 'verified'])->name("avocat.update_fonction");
+Route::post('/delete-fonct/{id}', [\App\Http\Controllers\AvocatController::class,'delete_fonction'])->middleware(['auth', 'verified'])->name("avocat.delete_fonction");
 
-Route::post('/save-fonction', [\App\Http\Controllers\AvocatController::class,'save_fonction'])->name("avocat.save-fonction");
-Route::post('/edit-avocat/{id}', [\App\Http\Controllers\AvocatController::class,'update'])->name("avocat.update");
+Route::post('/save-fonction', [\App\Http\Controllers\AvocatController::class,'save_fonction'])->middleware(['auth', 'verified'])->name("avocat.save-fonction");
+Route::post('/edit-avocat/{id}', [\App\Http\Controllers\AvocatController::class,'update'])->middleware(['auth', 'verified'])->name("avocat.update");
 
 
-Route::get('/avocat', [\App\Http\Controllers\AvocatController::class,'avocats'])->name("avocat");
+Route::get('/avocat', [\App\Http\Controllers\AvocatController::class,'avocats'])->middleware(['auth', 'verified'])->name("avocat");
 
 /**
  * Expertise
  */
 
-Route::get('/expertise', [\App\Http\Controllers\ExpertiseController::class,'all'])->name("expertise");
+Route::get('/expertise', [\App\Http\Controllers\ExpertiseController::class,'all'])->middleware(['auth', 'verified'])->name("expertise");
 
-Route::get('/detail-expertise/{id}', [\App\Http\Controllers\ExpertiseController::class,'show'])->name("expertise.detail");
+Route::get('/detail-expertise/{id}', [\App\Http\Controllers\ExpertiseController::class,'show'])->middleware(['auth', 'verified'])->name("expertise.detail");
 
-Route::get('/add-expertise', [\App\Http\Controllers\ExpertiseController::class,'add'])->name("expertise.add");
+Route::get('/add-expertise', [\App\Http\Controllers\ExpertiseController::class,'add'])->middleware(['auth', 'verified'])->name("expertise.add");
 
-Route::get('/edit-expertise', [\App\Http\Controllers\ExpertiseController::class,'edit'])->name("expertise.edit");
+Route::get('/edit-expertise', [\App\Http\Controllers\ExpertiseController::class,'edit'])->middleware(['auth', 'verified'])->name("expertise.edit");
 
-Route::post('/save-expertise', [\App\Http\Controllers\ExpertiseController::class,'save'])->name("expertise.save");
-Route::post('/save-fonction', [\App\Http\Controllers\ExpertiseController::class,'save_fonction'])->name("expertise.save-fonction");
-Route::post('/edit-expertise/{id}', [\App\Http\Controllers\ExpertiseController::class,'update'])->name("expertise.update");
-Route::post('/delete-expertise/{id}', [\App\Http\Controllers\ExpertiseController::class,'destroy'])->name("expertise.delete");
+Route::post('/save-expertise', [\App\Http\Controllers\ExpertiseController::class,'save'])->middleware(['auth', 'verified'])->name("expertise.save");
+Route::post('/save-fonction', [\App\Http\Controllers\ExpertiseController::class,'save_fonction'])->middleware(['auth', 'verified'])->name("expertise.save-fonction");
+Route::post('/edit-expertise/{id}', [\App\Http\Controllers\ExpertiseController::class,'update'])->middleware(['auth', 'verified'])->name("expertise.update");
+Route::post('/delete-expertise/{id}', [\App\Http\Controllers\ExpertiseController::class,'destroy'])->middleware(['auth', 'verified'])->name("expertise.delete");
 
 
 /**
@@ -61,39 +82,29 @@ Route::post('/delete-expertise/{id}', [\App\Http\Controllers\ExpertiseController
  *
  */
 
- Route::get('/publication', [\App\Http\Controllers\PublicationController::class,'all'])->name("publication");
+ Route::get('/publication', [\App\Http\Controllers\PublicationController::class,'all'])->middleware(['auth', 'verified'])->name("publication");
 
-Route::get('/detail-publication/{id}', [\App\Http\Controllers\PublicationController::class,'show'])->name("publication.detail");
+Route::get('/detail-publication/{id}', [\App\Http\Controllers\PublicationController::class,'show'])->middleware(['auth', 'verified'])->name("publication.detail");
 
-Route::get('/add-publication', [\App\Http\Controllers\PublicationController::class,'add'])->name("publication.add");
-Route::get('/add-domaine-pub', [\App\Http\Controllers\PublicationController::class,'add_domaine_pub'])->name("publication.add-domaine-pub");
+Route::get('/add-publication', [\App\Http\Controllers\PublicationController::class,'add'])->middleware(['auth', 'verified'])->name("publication.add");
+Route::get('/add-domaine-pub', [\App\Http\Controllers\PublicationController::class,'add_domaine_pub'])->middleware(['auth', 'verified'])->name("publication.add-domaine-pub");
 
-Route::get('/edit-publication', [\App\Http\Controllers\PublicationController::class,'edit'])->name("publication.edit");
+Route::get('/edit-publication', [\App\Http\Controllers\PublicationController::class,'edit'])->middleware(['auth', 'verified'])->name("publication.edit");
 
-Route::post('/save-publication', [\App\Http\Controllers\PublicationController::class,'save'])->name("publication.save");
+Route::post('/save-publication', [\App\Http\Controllers\PublicationController::class,'save'])->middleware(['auth', 'verified'])->name("publication.save");
 
-Route::post('/save-domaine-pub', [\App\Http\Controllers\PublicationController::class,'save_domaine'])->name("publication.save_domaine");
-Route::post('/delete-publication/{id}', [\App\Http\Controllers\PublicationController::class,'destroy'])->name("publication.delete");
-
-
-Route::get('/bureau', [\App\Http\Controllers\BureauController::class,'all'])->name("bureau");
-
-Route::get('/detail-bureau', [\App\Http\Controllers\BureauController::class,'show'])->name("bureau.detail");
-
-Route::get('/add-bureau', [\App\Http\Controllers\BureauController::class,'add'])->name("bureau.add");
-
-Route::get('/edit-bureau/{id}', [\App\Http\Controllers\BureauController::class,'edit'])->name("bureau.edit");
-Route::post('/update-bureau/{id}', [\App\Http\Controllers\BureauController::class,'update'])->name("bureau.update");
+Route::post('/save-domaine-pub', [\App\Http\Controllers\PublicationController::class,'save_domaine'])->middleware(['auth', 'verified'])->name("publication.save_domaine");
+Route::post('/delete-publication/{id}', [\App\Http\Controllers\PublicationController::class,'destroy'])->middleware(['auth', 'verified'])->name("publication.delete");
 
 
-Route::post('/save-bureau', [\App\Http\Controllers\BureauController::class,'save'])->name("bureau.save");
+Route::get('/bureau', [\App\Http\Controllers\BureauController::class,'all'])->middleware(['auth', 'verified'])->name("bureau");
+
+Route::get('/detail-bureau', [\App\Http\Controllers\BureauController::class,'show'])->middleware(['auth', 'verified'])->name("bureau.detail");
+
+Route::get('/add-bureau', [\App\Http\Controllers\BureauController::class,'add'])->middleware(['auth', 'verified'])->name("bureau.add");
+
+Route::get('/edit-bureau/{id}', [\App\Http\Controllers\BureauController::class,'edit'])->middleware(['auth', 'verified'])->name("bureau.edit");
+Route::post('/update-bureau/{id}', [\App\Http\Controllers\BureauController::class,'update'])->middleware(['auth', 'verified'])->name("bureau.update");
 
 
-/* Route::fallback(function () {
-    return view('errors.404');
-}); */
-/**
- * Routes sur l'expertise
- */
-//Route::get('/expertises', 'ExpertiseController@index');
-
+Route::post('/save-bureau', [\App\Http\Controllers\BureauController::class,'save'])->middleware(['auth', 'verified'])->name("bureau.save");

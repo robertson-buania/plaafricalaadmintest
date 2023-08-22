@@ -80,8 +80,48 @@
           <a class="nav-link nav-profile d-flex align-items-center pe-0"
           data-bs-toggle="dropdown">
             <img src="{{ url('assets/img/profile-img.jpg')}}" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">Mlle. Déborah</span>
-          </a><!-- End Profile Iamge Icon -->
+            <span class="d-none d-md-block dropdown-toggle ps-2"><div>{{ Auth::user()->name }}</div></span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li class="dropdown-header">
+              <h6>{{ Auth::user()->email }}</h6>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="{{route('profile.edit')}}">
+                <i class="bi bi-person"></i>
+                <span>Editer mon Profile</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+
+                    <x-dropdown-link :href="route('logout')"
+                            onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                        Deconnexion
+                    </x-dropdown-link>
+                </form>
+                <span></span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+
+          </ul>
+          <!-- End Profile Iamge Icon -->
 <!-- End Profile Dropdown Items -->
         </li><!-- End Profile Nav -->
 
