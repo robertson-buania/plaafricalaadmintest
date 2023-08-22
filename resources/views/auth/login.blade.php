@@ -23,7 +23,7 @@
                                     name="password"
                                     required autocomplete="current-password" />
 
-                    <x-input-error :messages="$errors->get('password')" style="font-size: 1.5rem; padding: 5px 3px 5px 3px;margin-bottom: 1rem"  class="mt-2" />
+                    <x-input-error :messages="$errors->get('password')" style="list-style: none;color: rgb(158, 158, 158);font-size: 1.5rem; padding: 5px 3px 5px 3px;margin-bottom: 1rem"  class="mt-2" />
                 </div>
 
                 <!-- Remember Me -->
@@ -35,11 +35,11 @@
                 </div>
 
                 <div style="display: flex;align-items: -center;justify-content: flex-end" class="flex items-center justify-end mt-4">
-                    @if (Route::has('password.request'))
+                    {{-- @if (Route::has('password.request'))
                         <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
                             {{ __('Forgot your password?') }}
                         </a>
-                    @endif
+                    @endif --}}
 
 
                 </div>
