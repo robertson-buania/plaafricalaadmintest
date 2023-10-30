@@ -12,7 +12,7 @@ class ExpertiseController extends Controller
     public function  all()
     {
         $expertises=Expertise::all();
-        dd($expertises);
+        //dd($expertises);
         return view("expertise.expertise",["expertises"=>$expertises]);
         //return Expertise::all();
     }
