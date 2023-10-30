@@ -57,17 +57,13 @@
                             <img src="{{url('assets/img/expertises/'.$expertise->photo)}}" alt="" class="img-fluid">
                             <div class="meta-top">
                                 <ul class="d-flex align-items-center justify-content-center ">
-
                                     <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a ><time datetime="2020-01-01">{{$expertise->created_at}}</time></a></li>
-                                    <li class="d-flex align-items-center"> <a href="{{url('assets/img/expertises/'.$expertise->pdf_fr)}}" ><i class="bi bi-download"></i><span class="btn badge bg-danger">PDF</span></a></li>
+                               {{--      <li class="d-flex align-items-center"> <a href="{{url('assets/img/expertises/'.$expertise->pdf_fr)}}" ><i class="bi bi-download"></i><span class="btn badge bg-danger">PDF</span></a></li>
+                               --}}
                                 </ul>
                             </div>
                          </div>
                     </div>
-
-
-
-
                   </div>
                   <hr>
                   <div class="content">
@@ -113,7 +109,8 @@
                                     <ul class="d-flex align-items-center justify-content-center ">
 
                                         <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a ><time datetime="2020-01-01">{{$expertise->created_at}}</time></a></li>
-                                        <li class="d-flex align-items-center"> <a href="{{url('assets/img/expertises/'.$expertise->pdf_en)}}" ><i class="bi bi-download"></i><span class="btn badge bg-danger">PDF</span></a></li>
+                                   {{--      <li class="d-flex align-items-center"> <a href="{{url('assets/img/expertises/'.$expertise->pdf_en)}}" ><i class="bi bi-download"></i><span class="btn badge bg-danger">PDF</span></a></li>
+                                     --}}
                                     </ul>
                                 </div>
                              </div>

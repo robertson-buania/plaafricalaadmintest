@@ -159,7 +159,7 @@ class PublicationController extends Controller
     public function show($id)
     {
         $pub=Publication::find($id);
-
+       // dd( $pub);
         return view("publications.detail",["publication"=>$pub]);
       //  return publication::findOrFail($id);
     }

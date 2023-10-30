@@ -63,7 +63,7 @@
                             <ul>
                             <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a >{{$publication->avocat->nom}}</a></li>
                             <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a ><time datetime="2020-01-01">{{$publication->created_at}}</time></a></li>
-                            <li class="d-flex align-items-center"><i class="bi bi-download"></i> <a href="{{url('assets/img/publications/'.$publication->avocat->photo)}}" ><span class="btn badge bg-danger">PDF</span></a></li>
+                            <li class="d-flex align-items-center"><i class="bi bi-download"></i> <a href="{{url('assets/img/publications/'.$publication->pdf_fr)}}" ><span class="btn badge bg-danger">PDF</span></a></li>
                             </ul>
                         </div><!-- End meta top -->
 
@@ -113,7 +113,7 @@
                         <ul>
                             <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a >{{$publication->avocat->nom}}</a></li>
                             <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a ><time datetime="2020-01-01">{{$publication->created_at}}</time></a></li>
-                            <li class="d-flex align-items-center"><i class="bi bi-download"></i> <a href="{{url('assets/img/publications/'.$publication->avocat->pdf_en)}}" ><span class="btn badge bg-danger">PDF</span></a></li>
+                            <li class="d-flex align-items-center"><i class="bi bi-download"></i> <a href="{{url('assets/img/publications/'.$publication->pdf_en)}}" ><span class="btn badge bg-danger">PDF</span></a></li>
                             </ul>
                                     </div>
                                 </div>

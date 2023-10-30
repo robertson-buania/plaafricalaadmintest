@@ -88,6 +88,7 @@ class ExpertiseController extends Controller
     {
         if($id){
             $expertise=Expertise::find($id);
+           // dd($expertise);
             return view("expertise.detail",['expertise'=>$expertise]);
         }else{
             return  redirect()->back()->with("Aucune expertise");

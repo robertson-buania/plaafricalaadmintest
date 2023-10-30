@@ -29,7 +29,7 @@
             <div class="social-links mt-2">
               <a href="{{$avocat->twitter}}" class="twitter"><i class="bi bi-twitter"></i></a>
               <a href="{{$avocat->linkedin}}" class="linkedin"><i class="bi bi-linkedin"></i></a>
-              <a href="{{$avocat->cv}}" class="linkedin "><i class="bi text-danger bi-download"></i></a>
+              <a href="{{url('assets/img/avocats/'.$avocat->cv)}}" class="linkedin "><i class="bi text-danger bi-download"></i></a>
             </div>
           </div>
         </div>
