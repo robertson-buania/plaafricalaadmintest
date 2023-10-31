@@ -240,12 +240,12 @@ class PlaafricalawFirmController extends Controller
 
          $expertisesDomainecompetence=new Collection();
 
-         dd(Expertise::all());
+       //  dd(Expertise::all());
 
         foreach (Expertise::all() as $expertise ) {
 
-            dd($expertise->category);
-            if($expertise->category==2){
+           // dd($expertise->category);
+            if($expertise->category=="2"){
 
                 $newexpertiseDomainecompetence=[
                     "id"=>$expertise->id,
@@ -256,7 +256,7 @@ class PlaafricalawFirmController extends Controller
 
                 $expertisesDomainecompetence->push($newexpertiseDomainecompetence);
 
-            }else if($expertise->category==1){
+            }else if($expertise->category=="1"){
                 $newexpertiseSecteuractivite=[
                     "id"=>$expertise->id,
                     "titre_fr"=>$expertise->titre_fr,
