@@ -244,6 +244,7 @@ class PlaafricalawFirmController extends Controller
 
         foreach (Expertise::all() as $expertise ) {
 
+            dd($expertise->category);
             if($expertise->category==2){
 
                 $newexpertiseDomainecompetence=[
