@@ -240,7 +240,7 @@ class PlaafricalawFirmController extends Controller
 
          $expertisesDomainecompetence=new Collection();
 
-        dd(Expertise::all());
+        //dd(Expertise::all());
 
         foreach (Expertise::all() as $expertise ) {
 
