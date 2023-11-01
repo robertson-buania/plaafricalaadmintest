@@ -240,17 +240,20 @@ class PlaafricalawFirmController extends Controller
 
          $expertisesDomainecompetence=new Collection();
 
+        dd(Expertise::all());
+
         foreach (Expertise::all() as $expertise ) {
 
-            if($expertise->category=="2"){
+            if($expertise->category==2){
                 $newexpertiseDomainecompetence=[
                     "id"=>$expertise->id,
                     "titre_fr"=>$expertise->titre_fr,
                     "titre_en"=>$expertise->titre_en,
                     "photo"=>$expertise->photo
                 ];
+
                 $expertisesDomainecompetence->push($newexpertiseDomainecompetence);
-            }else if($expertise->category=="1"){
+            }else if($expertise->category==1){
                 $newexpertiseSecteuractivite=[
                     "id"=>$expertise->id,
                     "titre_fr"=>$expertise->titre_fr,
@@ -262,7 +265,10 @@ class PlaafricalawFirmController extends Controller
 
         }
 
-        return ["expertisesSecteuractivite"=>$expertisesSecteuractivite,"expertisesDomainecompetence"=>$expertisesDomainecompetence];
+        return [
+            "expertisesSecteuractivite"=>$expertisesSecteuractivite,
+            "expertisesDomainecompetence"=>$expertisesDomainecompetence
+        ];
 
     }
 
